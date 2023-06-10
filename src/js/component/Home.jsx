@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 const Home = () => {
   const [count, setCount] = useState(0);
   const [arrayCount, setArrayCount] = useState([]);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const updateCount = () => {
-      setCount((count) => count + 1);
+      if (!isPaused) {
+        setCount((count) => count + 1);
+      }
 
       const countToArr = count.toString().padStart(6, "0").split("");
       setArrayCount(countToArr);
@@ -14,7 +17,11 @@ const Home = () => {
 
     const timeout = setTimeout(updateCount, 1000);
     return () => clearTimeout(timeout);
-  }, [count]);
+  }, [count, isPaused]);
+
+  const handleStop = () => {
+    setIsPaused(!isPaused);
+  };
 
   return (
     <div className="clock-content">
@@ -33,33 +40,13 @@ const Home = () => {
         <div className="clock-num">{arrayCount[4]}</div>
         <div className="clock-num">{arrayCount[5]}</div>
       </div>
+      <div className="btn-stop">
+        <button className="stop-start" onClick={handleStop}>
+          {isPaused ? "Resume" : "Stop"}
+        </button>
+      </div>
     </div>
   );
 };
 
 export default Home;
-
-// import React from "react";
-// import One from "./One.jsx";
-// import Tens from "./Tens.jsx";
-// import Hundreds from "./Hundreds.jsx";
-// import Thousand from "./Thousand.jsx";
-// import TenThousand from "./TenThousand.jsx";
-// import HundredThousand from "./HundredThousand.jsx";
-
-// //create your first component
-// function  Home () {
-
-// 	return (
-// 	<div className="clock container-fluid">
-// 		 <img src="https://cdn-icons-png.flaticon.com/512/2928/2928750.png"  alt="" />
-// 		 <HundredThousand />
-// 		 <TenThousand />
-// 		 <Thousand />
-// 		 <Hundreds />
-// 		 <Tens />
-// 		 <One />
-// 	</div>
-// 	);
-// };
-// export default Home;
