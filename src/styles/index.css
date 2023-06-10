@@ -52,6 +52,26 @@ h1 {
   margin: 0;
 }
 
+.btn-stop {
+  display: flex;
+  justify-content: center;
+}
+
+.stop-start {
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: 2px solid #c3c31b;
+  background: rgba(16, 85, 102, 0.5);
+  color: #c3c31b;
+  font-family: "Linden Hill", serif;
+  font-size: 3rem;
+}
+.stop-start:hover {
+  color: rgba(16, 85, 102, 0.5);
+  background: #c3c31b;
+  border: 3px solid rgba(16, 85, 102, 0.5);
+}
+
 @media screen and (max-width: 1000px) {
   .clock img {
     width: 105px;
